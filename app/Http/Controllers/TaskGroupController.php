@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskGroupRequest;
 use App\HyperTask\Managable;
 use App\HyperTask\ModelRepository;
 use App\Models\TaskGroup;
@@ -22,7 +23,7 @@ class TaskGroupController extends Controller implements Managable
         // TODO: Implement show() method.
     }
 
-    public function store(Request $request,TaskGroupRepository|ModelRepository $taskGroupRepository)
+    public function store(TaskGroupRequest|Request $taskGroupRequest,TaskGroupRepository|ModelRepository $taskGroupRepository)
     {
         // TODO: Implement store() method.
     }
@@ -37,7 +38,7 @@ class TaskGroupController extends Controller implements Managable
         // TODO: Implement edit() method.
     }
 
-    public function update(TaskGroup|Model $model, Request $request, TaskGroupRepository|ModelRepository $taskGroupRepository)
+    public function update(TaskGroup|Model $model, TaskGroupRequest|Request $taskGroupRequest, TaskGroupRepository|ModelRepository $taskGroupRepository)
     {
         // TODO: Implement update() method.
     }

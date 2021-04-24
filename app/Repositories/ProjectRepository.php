@@ -13,7 +13,7 @@ class ProjectRepository implements ModelRepository
 
     public function save(array $data): Project
     {
-        // TODO: Implement save() method.
+        return Project::create($data);
     }
 
     public function update(array $data,Project|Model $model): Project
