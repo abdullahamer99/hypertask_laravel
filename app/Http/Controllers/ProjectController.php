@@ -34,7 +34,7 @@ class ProjectController extends Controller implements Managable
 
     public function store(ProjectRequest|Request $projectRequest, ProjectRepository|ModelRepository $projectRepository)
     {
-        return view('projects.project')->withProject($projectRepository->save( $projectRequest->validated() ));
+
     }
 
     public function create()
