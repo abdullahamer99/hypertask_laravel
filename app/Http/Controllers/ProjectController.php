@@ -10,7 +10,7 @@ use App\Repositories\ProjectRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller implements Managable
+class ProjectController extends Controller
 {
 
 
@@ -19,41 +19,47 @@ class ProjectController extends Controller implements Managable
      */
     public function __construct()
     {
-
+        $this->middleware(['auth']);
     }
 
     public function index()
     {
         // TODO: Implement index() method.
+        return view('dashboard.projects.projects')->with([
+            'projects' => auth()->user()->projects
+        ]);
     }
 
-    public function show(Project|Model $project)
+    public function show(Project $project)
     {
-        // TODO: Implement show() method.
+        return view('dashboard.projects.project')->withProject($project);
     }
 
-    public function store(ProjectRequest|Request $projectRequest, ProjectRepository|ModelRepository $projectRepository)
+    public function store(ProjectRequest $projectRequest, ProjectRepository $projectRepository)
     {
-
+        $projectRepository->save( array_merge( $projectRequest->validated() , ['user_id' => auth()->id()]  ) );
+        return redirect(route('projects.index'));
     }
 
     public function create()
     {
-        // TODO: Implement create() method.
+        return view('dashboard.projects.new-project');
     }
 
-    public function edit(Project|Model $project)
+    public function edit(Project $project)
     {
-        // TODO: Implement edit() method.
+        return view('dashboard.projects.new-project')->withProject($project);
     }
 
-    public function update(Project|Model $project,ProjectRequest|Request $projectRequest,ProjectRepository|ModelRepository $projectRepository)
+    public function update(Project $project,ProjectRequest $projectRequest,ProjectRepository $projectRepository)
     {
-        // TODO: Implement update() method.
+        $projectRepository->update( $projectRequest->validated() , $project );
+        return redirect(route('projects.index'));
     }
 
-    public function delete(Project|Model $project)
+    public function destroy(Project $project)
     {
-        // TODO: Implement delete() method.
+        $project->delete();
+        return redirect(route('projects.index'));
     }
 }

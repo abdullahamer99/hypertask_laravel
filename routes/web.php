@@ -22,3 +22,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+Route::resource('projects' , \App\Http\Controllers\ProjectController::class );
+Route::resource('taskGroups' , \App\Http\Controllers\TaskGroupController::class );
+Route::resource('tasks' , \App\Http\Controllers\TaskController::class );

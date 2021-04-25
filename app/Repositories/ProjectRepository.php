@@ -8,7 +8,7 @@ use App\HyperTask\ModelRepository;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Model;
 
-class ProjectRepository implements ModelRepository
+class ProjectRepository
 {
 
     public function save(array $data): Project
@@ -16,8 +16,12 @@ class ProjectRepository implements ModelRepository
         return Project::create($data);
     }
 
-    public function update(array $data,Project|Model $model): Project
+    public function update(array $data,Project $project): Project
     {
-        // TODO: Implement update() method.
+        $project->update($data);
+
+        $project->refresh();
+
+        return $project;
     }
 }
