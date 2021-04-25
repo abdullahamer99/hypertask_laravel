@@ -12,8 +12,6 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-
-
     /**
      * ProjectController constructor.
      */
@@ -24,7 +22,6 @@ class ProjectController extends Controller
 
     public function index()
     {
-        // TODO: Implement index() method.
         return view('dashboard.projects.projects')->with([
             'projects' => auth()->user()->projects
         ]);
